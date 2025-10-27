@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Convite de Casamento - S & R</title>
+<title>Sidney & Robecivana 💍</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Literature&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 
 <style>
   * {
@@ -13,372 +17,311 @@
     padding: 0;
     box-sizing: border-box;
   }
-
-  /* === Aplicar as fontes ao site === */
-  body, h1, h2, h3, p, a, button, input {
-    font-family: 'Great Vibes', 'Playfair Display', cursive, serif !important;
-  }
-
-  /* Opcional: destacar títulos com Great Vibes e textos com Playfair */
-  h1, h2, .titulo-casal {
-    font-family: 'Great Vibes', cursive;
-  }
-
-  p, a, button, input {
-    font-family: 'Playfair Display', serif;
-  }
-
-/* === CARTA FLORAL === */
-#carta {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1600px;
-  z-index: 1000;
-  cursor: pointer;
-  transition: opacity 1.5s ease;
-  overflow: hidden;
-
-  /* === Imagem de fundo principal === */
-  background-image: url('img/{DA456225-AB16-4486-8984-06187EB79162}.png'); /* Substitua pelo nome do seu arquivo */
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover; /* Preenche toda a tela */
+  body, p, a, input, button {
+  font-family: 'Nunito', sans-serif;
+    font-family: 'Literature', serif;
 }
 
-/* Envelope (flap) transparente */
-#carta-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 80%;
-  height: 70%;
-  margin: auto;
-  right: 0;
-  bottom: 0;
-  
-  background: transparent; /* <- deixei transparente */
-  border: 2px solid #ffffff; /* mantém o contorno branco */
-  border-radius: 12px;
-  
-  transform-origin: top;
-  transform: rotateX(0deg);
-  transition: transform 1.5s ease-in-out, box-shadow 1.5s ease;
-  
-  box-shadow: 0 20px 50px rgba(255, 255, 255, 0.5); /* opcional, dá brilho sutil */
-  z-index: 1;
-}
-
-/* Texto da carta */
-#carta-inside {
-  position: absolute;
-  text-align: center;
-  color: #3b3b3b;
-  z-index: 2;
-  font-family: 'Playfair Display', serif;
-}
-
-#carta-inside h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 5rem;
-  color: #2b2b2b;
-  margin-bottom: 0.5rem;
-}
-
-#carta-inside p {
-  font-size: 1.5rem;
-  color: #555;
-  letter-spacing: 1px;
-}
-
-/* Conteúdo do site */
-#conteudo {
-  opacity: 0;
-  transition: opacity 1.5s ease;
-}
-
-
-
-/* === CONTEÚDO DO SITE === */
-#conteudo {
-  opacity: 0;
-  transition: opacity 1.5s ease;
+h1, h2, h3 {
+  font-family: 'Nunito', sans-serif;
+    font-family: 'Literature', serif;
+  font-weight: 700;
 }
 
   body {
-    font-family: 'Georgia', serif;
-    color: white;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
+    font-family: 'Literature', serif;
+    font-family: 'Playfair Display', serif;
+    color: #333;
     scroll-behavior: smooth;
-    background-color: #000;
+    overflow-x: hidden;
+    background-color: white;
   }
 
-  .background-fixed {
-    position: fixed;
-    top: 0;
+  /* ===== CAPA ===== */
+  .capa {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: url('img/WhatsApp\ Image\ 2025-10-26\ at\ 22.59.09.jpeg') center center / cover no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  /* Degradê que aparece ao rolar */
+  .degrade {
+    position: absolute;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: url('img/Gemini_Generated_Image_xfic4yxfic4yxfic (1).png') center center / cover no-repeat;
-    z-index: -3;
+    height: 0;
+    background: linear-gradient(to top, white 0%, rgba(255,255,255,0) 100%);
+    transition: height 1.5s ease;
+    z-index: 2;
   }
 
-  .blur-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
+  .degrade.ativo {
+    height: 100%;
+  }
+
+  /* Texto sobre o degradê */
+  .texto-capa {
+    position: absolute;
+    bottom: 20%;
     width: 100%;
-    height: 100%;
-    backdrop-filter: blur(3px);
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: -2;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    transform: translateY(50px);
+    z-index: 3;
   }
 
-  /* Flores flutuantes */
-  .flower {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 50px;
-    height: 50px;
-    background: url('img/Imagem5.png') no-repeat center/contain;
-    opacity: 0.8;
-    pointer-events: none;
-    animation: floatFlower linear infinite;
-    z-index: -1;
+  .texto-capa.ativo {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  @keyframes floatFlower {
-    0% { transform: translateY(-10vh) rotate(0deg) scale(0.7); opacity: 0.9; }
-    100% { transform: translateY(100vh) rotate(360deg) scale(1.1); opacity: 0; }
+  .iniciais {
+   font-family: 'Literature', serif;
+    font-size: 5rem;
+    color: #0d53a8;
+    margin-bottom: 20px;
+  }
+  
+  .iniciais2 {
+  font-family: 'Literature', serif;
+    font-size: 2rem;
+    color: #07669c;
+    margin-bottom: 10px;
+  }
+
+  .versiculo {
+   font-family: 'Literature', serif;
+    font-size: 2rem;
+    color: #065291;
+    margin-bottom: 30px;
+  }
+
+  .versiculo2 {
+   font-family: 'Literature', serif;
+    font-size: 1rem;
+    color: #000000;
+    margin-bottom: 30px;
+  }
+
+  .convite {
+    font-size: 1.2rem;
+    color: #000000;
+  }
+
+  /* ===== CONTEÚDO ===== */
+  .conteudo {
+    background-color: #fff;
+    color: #333;
+    padding: 100px 20px;
+    text-align: center;
   }
 
   section {
+    max-width: 900px;
+    margin: auto;
+    padding: 80px 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+  }
+
+  section.visivel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  h2 {
+    font-family: 'Literature', serif;
+    font-size: 2.5rem;
+    color: #0b5e9d;
+    margin-bottom: 20px;
+  }
+
+  p, a {
+     font-family: 'Literature', serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #165eaf;
+  }
+
+  a {
+    font-family: 'Literature', serif;
+    text-decoration: none;
+    color: #0d61ab;
+    font-weight: bold;
+  }
+
+  /* ===== FOTO FINAL ===== */
+  .foto-final {
+    position: relative;
     height: 100vh;
+    background: url('img/WhatsApp\ Image\ 2025-10-26\ at\ 22.13.54.jpeg') center center / cover no-repeat;
+    background-attachment: fixed;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    scroll-snap-align: start;
     opacity: 0;
-    transform: translateY(60px);
-    transition: opacity 1.2s ease, transform 1.2s ease;
+    transform: translateY(50px);
+    transition: opacity 2s ease, transform 2s ease;
   }
 
-  section.active { opacity: 1; transform: translateY(0); }
+  .foto-final.visivel {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-  @keyframes zoomIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .foto-final::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to top, rgba(255,255,255,0) 0%, #fff 100%);
+    z-index: 2;
+  }
 
-  @keyframes glow { 0% { text-shadow:0 0 10px white,0 0 20px white; } 50% { text-shadow:0 0 25px #02bbf3,0 0 45px #0e92c7;} 100%{ text-shadow:0 0 10px white,0 0 20px white;} }
-
-  h1 { font-size: 9rem; letter-spacing: 12px; animation: zoomIn 2s ease forwards, glow 3s infinite alternate; }
-
-  h2 { font-size: 4rem; margin-top: 1rem; animation: fadeInUp 2s ease forwards; }
-
-  @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px);} to {opacity:1; transform: translateY(0);} }
-
-  .countdown { font-size: 4rem; margin: 2rem 0; }
-
-  p, a { font-size: 2rem; color: white; text-decoration: none; }
-
-  button {
-    margin: 10px;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.2);
+  .foto-final h2 {
+     font-family: 'Literature', serif;
+    position: relative;
+    z-index: 3;
+    font-size: 4rem;
     color: white;
-    transition: background 0.3s, transform 0.3s;
+    text-shadow: 0 0 20px rgba(0,0,0,0.7);
   }
 
-  button:hover { background-color: rgba(255, 255, 255, 0.5); transform: scale(1.05); }
+/* Flores dentro da capa, sobre o degradê */
+.flores.capa-top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  z-index: 4; /* acima do degradê (que tem z-index: 2) */
+}
 
-  /* === Estilo do formulário === */
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.flores.capa-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 220px;
+  z-index: 4; /* acima do degradê */
+}
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .iniciais { font-size: 4rem; }
+    .versiculo { font-size: 1.1rem; }
+    .convite { font-size: 1rem; }
+    h2 { font-size: 2rem; }
   }
-
-  form input {
-    padding: 12px;
-    margin: 10px;
-    font-size: 1.5rem;
-    border-radius: 15px;
-    border: none;
-    width: 300px;
-    max-width: 80%;
-    text-align: center;
-  }
-
 </style>
-
 </head>
-
 <body>
 
-<div id="carta">
-  <div id="carta-flap"></div>
-  <div id="flores-container"></div>
-  <div id="carta-inside">
-    <h1>Clique para abrir o convite 💌</h1>
+<!-- CAPA -->
+
+<div class="capa">
+  <div class="degrade" id="degrade"></div>
+
+  <div class="texto-capa" id="textoCapa">
+    <div class="iniciais">S & R</div>
+
+    <!-- Flores entre iniciais e versículo -->
+    <img src="img/Imagem1.png" class="flores-capa" alt="flores">
+
+    <div class="versiculo">
+      “Assim, eles já não são dois, mas sim uma só carne.<br>
+      Portanto, o que Deus uniu, ninguém separa.”
+    </div>
+   <div class="versiculo2">
+      Mateus 19:6
+    </div>
+    <!-- Flores entre versículo e convite -->
+    <img src="img/Imagem1.png" class="flores-capa" alt="flores">
+
+    <div class="iniciais2">Sidney e Robecivana</div>
+    <div class="convite">Te convidamos para o nosso casamento</div>
   </div>
 </div>
 
-<div id="conteudo">
-<div class="background-fixed"></div>
-<div class="blur-layer"></div>
+<!-- CONTEÚDO -->
+<div class="conteudo">
 
-<section id="iniciais" class="active">
-  <h1>Sid & Ro</h1>
-</section>
+  <section>
+    <h2>que vai ser no dia</h2>
+    <p>💒 13 de Dezembro de 2025 às 17h</p>
+    <p>
+      📍 <a href="https://www.google.com/maps?q=Espaço+Flor+de+Lis,+Rua+das+Acácias,+123,+São+Paulo" target="_blank">
 
-<section id="frase">
-  <h2>Convidam você para celebrar o amor</h2>
-</section>
+      </a>
+    </p>
+  </section>
 
-<section id="contagem">
-  <h2>Faltam</h2>
-  <div class="countdown" id="countdown"></div>
-  <h2>Para o Grande Dia</h2>
-</section>
+  
+  <section>
+    <h2>Confirme Sua Presença</h2>
+    <form action="salvar_confirmacao.php" method="POST" target="_blank">
+      <input type="text" name="nome" placeholder="Seu nome completo" required style="padding:10px; border-radius:10px; border:1px solid #ccc; width:250px;"><br>
+      <input type="number" name="acompanhantes" placeholder="Nº de acompanhantes" min="0" required style="padding:10px; border-radius:10px; border:1px solid #ccc; width:250px;"><br>
+      <button type="submit" style="background:#ad8b73; color:white; border:none; padding:10px 20px; border-radius:20px; cursor:pointer;">Enviar</button>
+    </form>
+  </section>
 
-<section id="local">
-  <p>💒 13 de Dezembro de 2025 às 17h</p>
-  <p>
-    📍 <a href="https://www.google.com/maps?q=Espaço+Flor+de+Lis,+Rua+das+Acácias,+123,+São+Paulo" target="_blank">
-      Espaço Flor de Lis — Rua das Acácias, 123 — São Paulo, SP
-    </a>
-  </p>
-</section>
+   <section>
+    <h2>Contagem Regressiva</h2>
+    <p id="countdown" style="font-size:2rem; color:#1c52af; margin-top:15px;"></p>
+  </section>
 
-<section id="confirmacao">
-  <h2>Confirme sua presença</h2>
-  <form action="salvar_confirmacao.php" method="POST" target="_blank">
-    <input type="text" name="nome" placeholder="Seu nome completo" required>
-    <input type="number" name="acompanhantes" placeholder="Número de acompanhantes" min="0" required>
-    <button type="submit">Enviar</button>
-  </form>
-</section>
 
-<section id="botoes">
-  <button onclick="toggleMusic()">🎵 Música</button>
-</section>
+</div>
 
+<!-- FOTO FINAL -->
+<div class="foto-final" id="fotoFinal">
 <script>
-
-const flap = document.getElementById("carta-flap");
-const carta = document.getElementById("carta");
-const conteudo = document.getElementById("conteudo");
-
-carta.addEventListener("click", () => {
-  // Gira a aba
-  flap.style.transform = "rotateX(-180deg)";
-
-  // Mostra o conteúdo do site
-  conteudo.style.opacity = "1";
-
-  // Faz a carta sumir suavemente
-  carta.style.opacity = "0";
-  carta.style.pointerEvents = "none"; // impede cliques após abrir
-
-  // Após a animação, remove do layout
-  setTimeout(() => {
-    carta.style.display = "none";
-  }, 1600);
-});
-
-function criarFlorBrotando() {
-  const flor = document.createElement('div');
-  flor.classList.add('flor-brota');
-  flor.textContent = tiposFlores[Math.floor(Math.random() * tiposFlores.length)];
-
-  // posição aleatória ao redor da carta
-  const x = Math.random() * 80 + 10; // porcentagem horizontal
-  const y = Math.random() * 80 + 10; // porcentagem vertical
-  flor.style.left = x + '%';
-  flor.style.top = y + '%';
-  flor.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
-  flor.style.animationDuration = (4 + Math.random() * 3) + 's';
-
-  floresContainer.appendChild(flor);
-
-  // remover após o ciclo da animação
-  setTimeout(() => flor.remove(), 7000);
-}
-
-// gerar flores até a carta abrir
-let floresInterval = setInterval(criarFlorBrotando, 400);
-
-// parar flores quando a carta abrir
-carta.addEventListener("click", () => {
-  clearInterval(floresInterval);
-  document.querySelectorAll('.flor-brota').forEach(f => {
-    f.style.transition = 'opacity 1s ease';
-    f.style.opacity = '0';
-  });
-});
-
-
-  // === Revelar seções ===
-  const sections = document.querySelectorAll("section");
-  function revealSections() {
+  // Ativa degradê e texto conforme rolagem
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
-    sections.forEach(sec => {
-      const rect = sec.getBoundingClientRect();
-      if (rect.top < windowHeight / 1.5 && rect.bottom > 0) {
-        sec.classList.add("active");
-      } else {
-        sec.classList.remove("active");
-      }
+    const degrade = document.getElementById("degrade");
+    const textoCapa = document.getElementById("textoCapa");
+
+    if (scrollY > windowHeight * 0.1) degrade.classList.add("ativo");
+    if (scrollY > windowHeight * 0.25) textoCapa.classList.add("ativo");
+  });
+
+  // Efeito de entrada das seções
+  const sections = document.querySelectorAll("section");
+  const fotoFinal = document.getElementById("fotoFinal");
+
+  function revelarSecoes() {
+    const windowHeight = window.innerHeight;
+    [...sections, fotoFinal].forEach(sec => {
+      const pos = sec.getBoundingClientRect().top;
+      if (pos < windowHeight * 0.85) sec.classList.add("visivel");
     });
   }
-  window.addEventListener("scroll", revealSections);
-  revealSections();
 
-  // === Contagem regressiva ===
+  window.addEventListener("scroll", revelarSecoes);
+  revelarSecoes();
+
+  // Contagem regressiva
   const weddingDate = new Date("December 13, 2025 17:00:00").getTime();
   const countdown = document.getElementById("countdown");
-  function updateCountdown() {
+  setInterval(() => {
     const now = new Date().getTime();
-    const distance = weddingDate - now;
-    if (distance < 0) { countdown.textContent = "💍 O grande dia chegou!"; return; }
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    countdown.textContent = `${days} dias e ${hours} horas`;
-  }
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
-
-  // === Música ===
-  let music = new Audio("audio/videoplayback (2).mp4");
-  let tocando = false;
-  function toggleMusic() {
-    if (!tocando) { music.play(); tocando = true; } 
-    else { music.pause(); tocando = false; }
-  }
-
-  // === Criar flores flutuantes ===
-  function criarFlor() {
-    const flor = document.createElement("div");
-    flor.classList.add("flower");
-    flor.style.left = Math.random() * 100 + "vw";
-    flor.style.width = 15 + Math.random() * 60 + "px";
-    flor.style.height = flor.style.width;
-    flor.style.animationDuration = 5 + Math.random() * 5 + "s";
-    document.body.appendChild(flor);
-    setTimeout(() => flor.remove(), 10000);
-  }
-  setInterval(criarFlor, 200);
+    const diff = weddingDate - now;
+    if (diff < 0) { countdown.textContent = "💍 O grande dia chegou!"; return; }
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    countdown.textContent = `${d} dias e ${h} horas restantes`;
+  }, 1000);
 </script>
 
 </body>
